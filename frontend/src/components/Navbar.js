@@ -19,14 +19,55 @@ const Navbar = () => {
           </Link>
 
           {/* Dropdown menu */}
-          <div className="absolute hidden group-hover:block top-full left-0 bg-white border shadow-lg w-40 mt-2">
-            <p className="px-4 py-2 hover:bg-gray-100 border-b">Glass</p>
-            <p className="px-4 py-2 hover:bg-gray-100 border-b">Plywood</p>
-            <p className="px-4 py-2 hover:bg-gray-100">Sunmica</p>
-            <p className="px-4 py-2 hover:bg-gray-100">Kitply</p>
-            <p className="px-4 py-2 hover:bg-gray-100">Fevicol</p>
-            <p className="px-4 py-2 hover:bg-gray-100">Tik Ply</p>
-            <p className="px-4 py-2 hover:bg-gray-100">Fancy Handle</p>
+          <div className="absolute hidden group-hover:block top-full left-0 bg-white border shadow-lg w-40 ">
+            <Link
+              to="/gallery/glass"
+              className="block px-4 py-2 hover:bg-gray-100 border-b"
+            >
+              Glass
+            </Link>
+
+            <Link
+              to="/gallery/plywood"
+              className="block px-4 py-2 hover:bg-gray-100 border-b"
+            >
+              Plywood
+            </Link>
+
+            <Link
+              to="/gallery/sunmica"
+              className="block px-4 py-2 hover:bg-gray-100 border-b"
+            >
+              Sunmica
+            </Link>
+
+            <Link
+              to="/gallery/kitply"
+              className="block px-4 py-2 hover:bg-gray-100 border-b"
+            >
+              Kitply
+            </Link>
+
+            <Link
+              to="/gallery/fevicol"
+              className="block px-4 py-2 hover:bg-gray-100 border-b"
+            >
+              Fevicol
+            </Link>
+
+            <Link
+              to="/gallery/teakply"
+              className="block px-4 py-2 hover:bg-gray-100 border-b"
+            >
+              Teak Ply
+            </Link>
+
+            <Link
+              to="/gallery/fancyhandle"
+              className="block px-4 py-2 hover:bg-gray-100"
+            >
+              Fancy Handle
+            </Link>
           </div>
         </div>
 

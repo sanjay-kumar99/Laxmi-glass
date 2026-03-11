@@ -1,77 +1,78 @@
-/* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Services = () => {
-  const servicesList = [
-    {
-      name: "Glass",
-      description:
-        "We offer a wide range of glass products including tempered, laminated, and decorative glass for various applications.",
-      image:
-        "/images/4.jpeg",
-    },
-    {
-      name: "Plywood",
-      description:
-        "High-quality plywood for construction and furniture making.",
-      image:
-        "/images/plywood.webp",
-    },
-    {
-      name: "Sunmica",
-      description:
-        "Durable and attractive sunmica surfaces for interior decoration.",
-      image:
-        "/images/sunmica.webp",
-    },
-    {
-      name: "Kitply",
-      description: "Premium kitply for kitchen and bathroom applications.",
-      image:
-        "/images/kitply.webp",
-    },
-    {
-      name: "Fevicol",
-      description: "Strong and reliable fevicol for bonding various materials.",
-      image:
-        "/images/fevicol.webp",
-    },
-    {
-      name: "Teak Ply",
-      description: "High-quality teak ply for various construction needs.",
-      image:
-        "/images/teakply.webp",
-    },
-    {
-      name: "Fancy Handle",
-      description: "Elegant and durable fancy handles for doors and cabinets.",
-      image:
-        "/images/fancyhandle.webp",
-    },
-  ];
+
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+
+    fetch("http://localhost:5000/api/gallery")
+      .then((res) => res.json())
+      .then((data) => {
+
+        // category wise first image
+        const uniqueServices = [];
+
+        const categories = new Set();
+
+        data.forEach((item) => {
+
+          if (!categories.has(item.category)) {
+
+            categories.add(item.category);
+
+            uniqueServices.push(item);
+
+          }
+
+        });
+
+        setServices(uniqueServices);
+
+      });
+
+  }, []);
+
   return (
     <div className="px-10 py-12">
-      <h1 className="text-3xl text-center font-bold mb-8">Our Services</h1>
+
+      <h1 className="text-3xl text-center font-bold mb-8">
+        Our Services
+      </h1>
+
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {servicesList.map((service, index) => (
+
+        {services.map((service) => (
+
           <div
-            key={index}
+            key={service._id}
             className="rounded-xl overflow-hidden shadow hover:shadow-xl transition group"
           >
+
             <div className="h-48 overflow-hidden">
+
               <img
-                src={service.image}
-                alt={service.name}
+                src={service.imageUrl}
+                alt={service.category}
                 className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
               />
+
             </div>
-            <div className=" p-4text-center font-semibold">{service.name}</div>
-            <div className=" p-4text-center font-semibold">
+
+            <div className="p-4 text-center font-semibold capitalize">
+              {service.category}
+            </div>
+            <div className="px-4 pb-4 text-sm text-gray-600 text-center">
               {service.description}
             </div>
+
+
           </div>
+
         ))}
+
       </div>
+
     </div>
   );
 };

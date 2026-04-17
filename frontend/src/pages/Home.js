@@ -1,20 +1,35 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
+/* eslint-disable no-unused-vars */
 import { MapPin } from "lucide-react";
 import React from "react";
+import { motion } from "framer-motion";
 
 const Home = () => {
   return (
     <>
       {/* --- Hero Section --- */}
-      <header className="relative h-[500px] bg-gray-100 overflow-hidden">
-        {/* Background Image Placeholder */}
+      <motion.header
+        className="relative h-[500px] bg-gray-100 overflow-hidden"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 120, damping: 20 }}
+      >
         <div className="absolute inset-0 bg-black/40 z-10"></div>
-        <img
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000"
-          alt="Luxury Interior"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          className="absolute inset-0 h-full w-full object-cover z-10 "
+        >
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
 
-        <div className="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-4">
+        <motion.div
+          className="relative z-20 flex flex-col items-center justify-center h-full text-white text-center px-4 mt-12 "
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 120, damping: 15 }}
+        >
           <div className="bg-white/90 p-8 rounded-lg shadow-2xl max-w-4xl border-t-8 border-red-600">
             <h2 className="text-red-700 text-2xl font-bold mb-1 italic">
               Surender (Owner)
@@ -35,10 +50,17 @@ const Home = () => {
               Fevicol, Tik Ply & Fancy Handle etc.
             </div>
           </div>
-        </div>
-      </header>
+        </motion.div>
+      </motion.header>
+
       {/* --- Gallery Spotlight --- */}
-      <section className="py-16 px-8 max-w-7xl mx-auto">
+      <motion.section
+        className="py-16 px-8 max-w-7xl mx-auto"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 100, damping: 15 }}
+        viewport={{ once: true }}
+      >
         <h2 className="text-3xl font-bold text-center mb-2">
           Gallery Spotlight
         </h2>
@@ -46,105 +68,95 @@ const Home = () => {
           Interactive high-resolution designs.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="md:col-span-1 h-80 rounded-xl overflow-hidden relative group">
-            <img
-              src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=500"
-              className="h-full w-full object-cover group-hover:scale-110 transition duration-500"
-              alt="Staircase"
-            />
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black text-white">
-              Glass Staircase
-            </div>
-          </div>
-          <div className="md:col-span-1 flex flex-col gap-4">
-            <div className="h-[152px] rounded-xl overflow-hidden relative">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-4 gap-4"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.2 },
+            },
+          }}
+        >
+          {[
+            "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=500",
+            "https://media.istockphoto.com/id/2053961830/photo/luxury-modern-gray-kitchen.jpg?s=612x612&w=0&k=20&c=JVyV2xLN-xr52YCmIyrzEhrCp7tnyVx3myBbneELUv4=",
+            "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500",
+            "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=500",
+          ].map((src, idx) => (
+            <motion.div
+              key={idx}
+              className="rounded-xl overflow-hidden relative group"
+              variants={{
+                hidden: { opacity: 0, scale: 0.9 },
+                visible: { opacity: 1, scale: 1 },
+              }}
+              transition={{ type: "spring", stiffness: 120, damping: 15 }}
+              whileHover={{ scale: 1.05 }}
+            >
               <img
-                src="https://media.istockphoto.com/id/2053961830/photo/luxury-modern-gray-kitchen.jpg?s=612x612&w=0&k=20&c=JVyV2xLN-xr52YCmIyrzEhrCp7tnyVx3myBbneELUv4="
-                className="h-full w-full object-cover"
-                alt="Kitchen"
+                src={src}
+                className="h-full w-full object-cover group-hover:scale-110 transition duration-500"
+                alt="Gallery Item"
               />
-              <div className="absolute bottom-0 p-2 text-white text-sm bg-black/50 w-full">
-                Modular Kitchen
-              </div>
-            </div>
-            <div className="h-[152px] rounded-xl overflow-hidden relative">
-              <img
-                src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500"
-                className="h-full w-full object-cover"
-                alt="Wardrobe"
-              />
-              <div className="absolute bottom-0 p-2 text-white text-sm bg-black/50 w-full">
-                Wardrobe Glass
-              </div>
-            </div>
-          </div>
-          <div className="md:col-span-1 h-80 rounded-xl overflow-hidden relative">
-            <img
-              src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=500"
-              className="h-full w-full object-cover"
-              alt="Sunmica"
-            />
-            <div className="absolute bottom-0 p-4 text-white bg-black/50 w-full font-bold">
-              Textured Sunmica
-            </div>
-          </div>
-          <div className="md:col-span-1 flex flex-col gap-4">
-            <div className="h-[152px] rounded-xl overflow-hidden relative">
-              <img
-                src="https://plus.unsplash.com/premium_photo-1677327623532-c1cf197e4778?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aGFuZGxlc3xlbnwwfHwwfHx8MA%3D%3D"
-                className="h-full w-full object-cover"
-                alt="Handles"
-              />
-              <div className="absolute bottom-0 p-2 text-white text-sm bg-black/50 w-full">
-                Premium Handles
-              </div>
-            </div>
-            <div className="h-[152px] rounded-xl overflow-hidden relative">
-              <img
-                src="https://images.unsplash.com/photo-1589710751893-f9a6770ad71b?w=500"
-                className="h-full w-full object-cover"
-                alt="Handles"
-              />
-              <div className="absolute bottom-0 p-2 text-white text-sm bg-black/50 w-full">
-                Modern Fittings
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.section>
 
       {/* --- Visualizer & Owner Section --- */}
-      <section className="bg-gray-50 py-16 px-8">
+      <motion.section
+        className="bg-gray-50 py-16 px-8"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 100, damping: 15 }}
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
           {/* Map/Location */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ type: "spring", stiffness: 120, damping: 20 }}
+            viewport={{ once: true }}
+          >
             <h3 className="text-2xl font-bold mb-4">
               Visualizer Tool & Location
             </h3>
-            <div className="bg-white p-4 rounded-xl shadow-md">
-              <div className="bg-gray-200 h-64 rounded-lg flex items-center justify-center overflow-hidden border">
-                {/* Google Map Placeholder */}
-                <div className="text-center p-4">
-                  <MapPin className="mx-auto text-red-600 mb-2" size={32} />
-                  <p className="font-bold">
-                    Lower Bazar, Sarkaghat (H.P.) 175024
-                  </p>
-                  <p className="text-xs text-gray-500 mt-2">
-                    Open Interactive Map
-                  </p>
-                </div>
+            <div className="bg-white p-4 rounded-xl shadow-md space-y-4">
+              <div className="text-center">
+                <p className="font-bold text-gray-700">
+                  Lower Bazar, Sarkaghat (H.P.) 175024
+                </p>
+                <p className="text-xs text-gray-500">Open Interactive Map</p>
               </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3391.8184879221285!2d76.71534827442056!3d31.77543623449812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904db91b10ac457%3A0xaeac23507703ee3b!2zTGF4bWkgZ2xhc3MgSG91c2Ug4KS44KWB4KSw4KWH4KSC4KSm4KWN4KSwIOCknOClgCDgpLjgpLDgpJXgpL7gpJjgpL7gpJ8g4KS14KS-4KSy4KWH!5e0!3m2!1sen!2sin!4v1775220145298!5m2!1sen!2sin"
+                width="100%"
+                height="300"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                className="rounded-lg shadow-md"
+              ></iframe>
             </div>
-          </div>
+          </motion.div>
 
           {/* Owner Info */}
-          <div className="bg-white p-6 rounded-xl shadow-md border-l-4 border-red-600 flex gap-6 items-center">
+          <motion.div
+            className="bg-white p-6 rounded-xl shadow-md border-l-4 border-red-600 flex gap-6 items-center"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ type: "spring", stiffness: 120, damping: 20 }}
+            viewport={{ once: true }}
+          >
             <div className="w-32 h-32 rounded-full bg-gray-300 overflow-hidden border-4 border-white shadow-lg shrink-0">
               <img
-                src="https://via.placeholder.com/150"
+                src="/images/owner.jpeg"
                 alt="Surender Owner"
-                className="w-full h-full object-cover"
+                className="w-full h-full "
               />
             </div>
             <div>
@@ -154,13 +166,17 @@ const Home = () => {
                 providing professional glass and hardware solutions for over 20
                 years in Sarkaghat.
               </p>
-              <button className="bg-red-600 text-white px-6 py-2 rounded shadow hover:bg-red-700 transition">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-red-600 text-white px-6 py-2 rounded shadow hover:bg-red-700 transition"
+              >
                 View More
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </>
   );
 };

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { ChevronDown, MessageCircle } from "lucide-react";
+import {  MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import React from "react";
 
@@ -15,60 +15,47 @@ const Navbar = () => {
             to="/services"
             className="flex items-center hover:text-red-600 transition"
           >
-            Services <ChevronDown size={16} className="ml-1" />
+            Services 
+            {/* <ChevronDown size={16} className="ml-1" /> */}
           </Link>
 
           {/* Dropdown menu */}
-          <div className="absolute hidden group-hover:block top-full left-0 bg-white border shadow-lg w-40 ">
+          {/* <div className="absolute hidden group-hover:block top-full left-0 bg-white border shadow-lg w-40 ">
             <Link
-              to="/gallery/glass"
+              to="/gallery/modern-kitchen"
               className="block px-4 py-2 hover:bg-gray-100 border-b"
             >
-              Glass
+              Modern Modular Kitchen Design
             </Link>
 
             <Link
-              to="/gallery/plywood"
+              to="/gallery/doors"
               className="block px-4 py-2 hover:bg-gray-100 border-b"
             >
-              Plywood
+              Complete Door Solutions
+            </Link>
+
+            <Link
+              to="/gallery/wooden-work"
+              className="block px-4 py-2 hover:bg-gray-100 border-b"
+            >
+              Custom Wooden Work
             </Link>
 
             <Link
               to="/gallery/sunmica"
               className="block px-4 py-2 hover:bg-gray-100 border-b"
             >
-              Sunmica
+              Premium Finishing Materials
             </Link>
 
             <Link
-              to="/gallery/kitply"
+              to="/gallery/glass"
               className="block px-4 py-2 hover:bg-gray-100 border-b"
             >
-              Kitply
+              Professional Glass Work
             </Link>
-
-            <Link
-              to="/gallery/fevicol"
-              className="block px-4 py-2 hover:bg-gray-100 border-b"
-            >
-              Fevicol
-            </Link>
-
-            <Link
-              to="/gallery/teakply"
-              className="block px-4 py-2 hover:bg-gray-100 border-b"
-            >
-              Teak Ply
-            </Link>
-
-            <Link
-              to="/gallery/fancyhandle"
-              className="block px-4 py-2 hover:bg-gray-100"
-            >
-              Fancy Handle
-            </Link>
-          </div>
+          </div> */}
         </div>
 
         <Link to="/gallery" className="hover:text-red-600 transition">

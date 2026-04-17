@@ -6,6 +6,7 @@ import {
   MessageCircle,
   Phone,
 } from "lucide-react";
+
 import React from "react";
 
 const Footer = () => {
@@ -28,12 +29,27 @@ const Footer = () => {
           </p>
         </div>
         <div className="flex justify-end gap-4 items-center">
-          <div className="bg-white/20 p-2 rounded-full cursor-pointer hover:bg-white/40 transition">
-            <Facebook size={24} />
-          </div>
-          <div className="bg-white/20 p-2 rounded-full cursor-pointer hover:bg-white/40 transition">
-            <Instagram size={24} />
-          </div>
+          {/* Facebook */}
+          <a
+            href="https://www.facebook.com/yourpage"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="bg-white/20 p-2 rounded-full cursor-pointer hover:bg-white/40 transition">
+              <Facebook size={24} />
+            </div>
+          </a>
+
+          {/* Instagram */}
+          <a
+            href="https://www.instagram.com/laxmiglasshouse02?igsh=MWx4OW9kMnRibDZvOQ%3D%3D&utm_source=qr"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="bg-white/20 p-2 rounded-full cursor-pointer hover:bg-white/40 transition">
+              <Instagram size={24} />
+            </div>
+          </a>
         </div>
       </div>
       <p className="text-center text-sm opacity-60">

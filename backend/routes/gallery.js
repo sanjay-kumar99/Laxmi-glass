@@ -22,8 +22,10 @@ router.post("/upload", upload.single("image"), async (req, res) => {
 
 router.get("/:category", async (req, res) => {
   try {
+    const categoryParam = req.params.category;
+
     const images = await Gallery.find({
-      category: req.params.category,
+      category: { $regex: new RegExp("^" + categoryParam + "$", "i") },
     });
 
     res.json(images);
@@ -31,12 +33,11 @@ router.get("/:category", async (req, res) => {
     res.status(500).json(error);
   }
 });
-router.get("/", async (req, res) => {
 
+router.get("/", async (req, res) => {
   const images = await Gallery.find();
 
   res.json(images);
-
 });
 
 export default router;

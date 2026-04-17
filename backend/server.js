@@ -2,6 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 import galleryRoutes from "./routes/gallery.js";
 import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -9,7 +12,7 @@ const PORT = 5000;
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 
-mongoose.connect("mongodb://127.0.0.1:27017/galleryDB");
+mongoose.connect(process.env.MONGO_URI);
 
 app.use("/api/gallery", galleryRoutes);
 

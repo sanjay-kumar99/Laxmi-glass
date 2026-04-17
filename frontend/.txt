@@ -1,0 +1,128 @@
+import React, { useEffect, useState } from "react";
+
+const Services = () => {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const updatedServices = [
+      {
+        _id: "1",
+        category: "Modern Modular Kitchen Design",
+        description:
+          "Wooden kitchen cabinets, Acrylic & Sunmica finish kitchens, Kitchen chimney installation, Custom storage solutions",
+        images: [
+          "http://localhost:5000/uploads/modern-kitchen/1.jpeg",
+          "http://localhost:5000/uploads/modern-kitchen/2.jpeg",
+          "http://localhost:5000/uploads/modern-kitchen/3.jpeg",
+        ],
+      },
+      {
+        _id: "2",
+        category: "Complete Door Solutions",
+        description:
+          "Wooden doors (custom design), Mortise locks (high security), Fancy door handles, Door closers, Hinges & accessories",
+        images: [
+          "http://localhost:5000/uploads/doors/d1.jpeg",
+          "http://localhost:5000/uploads/doors/d2.jpeg",
+        ],
+      },
+      {
+        _id: "3",
+        category: "Custom Wooden Work",
+        description:
+          "Wooden wall paneling, Louvers design work, Wooden ceiling & partitions, Custom furniture & fittings",
+        images: [
+          "http://localhost:5000/uploads/woodwork/w1.jpeg",
+          "http://localhost:5000/uploads/woodwork/w2.jpeg",
+        ],
+      },
+      {
+        _id: "4",
+        category: "Premium Finishing Materials",
+        description:
+          "Sunmica (laminate sheets), Acrylic sheets (high gloss), Decorative panels, Custom finishes as per design",
+        images: [
+          "http://localhost:5000/uploads/finishing/f1.jpeg",
+          "http://localhost:5000/uploads/finishing/f2.jpeg",
+        ],
+      },
+      {
+        _id: "5",
+        category: "Professional Glass Work",
+        description:
+          "Glass etching designs, Glass grinding & finishing, Decorative glass installation, Partitions & panels",
+        images: [
+          "http://localhost:5000/uploads/glass/g1.jpeg",
+          "http://localhost:5000/uploads/glass/g2.jpeg",
+        ],
+      },
+    ];
+
+    setServices(updatedServices);
+  }, []);
+
+  return (
+    <div className="px-10 py-12">
+      <h1 className="text-3xl text-center font-bold mb-8">Our Services</h1>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {services.map((service) => {
+          const [currentIndex, setCurrentIndex] = useState(0);
+
+          const nextImage = () => {
+            setCurrentIndex((prev) =>
+              prev === service.images.length - 1 ? 0 : prev + 1
+            );
+          };
+
+          const prevImage = () => {
+            setCurrentIndex((prev) =>
+              prev === 0 ? service.images.length - 1 : prev - 1
+            );
+          };
+
+          return (
+            <div
+              key={service._id}
+              className="rounded-xl overflow-hidden shadow hover:shadow-xl transition group"
+            >
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={service.images[currentIndex]}
+                  alt={service.category}
+                  className="w-full h-full object-cover transition duration-500"
+                />
+                {/* Arrows */}
+                <button
+                  onClick={prevImage}
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/70 px-2 py-1 rounded-full shadow"
+                >
+                  ◀
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/70 px-2 py-1 rounded-full shadow"
+                >
+                  ▶
+                </button>
+              </div>
+
+              <div className="p-4 text-center font-semibold capitalize">
+                {service.category}
+              </div>
+              <div className="px-4 pb-4 text-sm text-gray-600 text-center">
+                {service.description}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default Services;
+
+
+
+https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3391.8184879221285!2d76.71534827442056!3d31.77543623449812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904db91b10ac457%3A0xaeac23507703ee3b!2zTGF4bWkgZ2xhc3MgSG91c2Ug4KS44KWB4KSw4KWH4KSC4KSm4KWN4KSwIOCknOClgCDgpLjgpLDgpJXgpL7gpJjgpL7gpJ8g4KS14KS-4KSy4KWH!5e0!3m2!1sen!2sin!4v1775220145298!5m2!1sen!2sin
